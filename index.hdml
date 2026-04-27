@@ -1,1 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karrigan Gangwish</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --cream: #f5f0e8;
+      --sand: #e8dfc8;
+      --terracotta: #c4735a;
+      --terracotta-dark: #a05a44;
+      --charcoal: #2a2520;
+      --warm-gray: #7a7168;
+      --light-warm: #f9f5ef;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      overflow-x: hidden;
+    }
+
+    /* ---- NAV ---- */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(245,240,232,0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--sand);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--charcoal);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+
+    .nav-links a:hover { color: var(--terracotta); }
+
+    /* ---- HERO ---- */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 8rem 4rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-shape {
+      position: absolute;
+      top: -10%;
+      right: -5%;
+      width: 55%;
+      height: 110%;
+      background: var(--sand);
+      border-radius: 40% 0 0 50%;
+      z-index: 0;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.9s ease both;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--charcoal);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .hero-tagline {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--warm-gray);
+      line-height: 1.7;
+      max-width: 420px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .contact-chip {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--warm-gray);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--sand);
+      border-radius: 50px;
+      transition: all 0.25s;
+      background: white;
+    }
+
+    .contact-chip:hover {
+      border-color: var(--terracotta);
+      color: var(--terracotta);
+      background: var(--light-warm);
+    }
+
+    .hero-strengths {
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.9s 0.2s ease both;
+      padding-left: 4rem;
+    }
+
+    .strengths-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-bottom: 1.5rem;
+    }
+
+    .strength-item {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      padding: 0.7rem 0;
+      border-bottom: 1px solid var(--sand);
+      opacity: 0.6;
+      transition: opacity 0.3s, color 0.3s;
+      cursor: default;
+    }
+
+    .strength-item:hover {
+      opacity: 1;
+      color: var(--terracotta);
+    }
+
+    /* ---- SECTIONS ---- */
+    section {
+      padding: 6rem 4rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+
+    .section-num {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      color: var(--terracotta);
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      color: var(--charcoal);
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--sand);
+      margin-left: auto;
+    }
+
+    /* ---- EXPERIENCE ---- */
+    #experience { background: var(--light-warm); }
+
+    .exp-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .exp-card {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 2rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--sand);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+
+    .exp-card.visible { opacity: 1; transform: translateY(0); }
+    .exp-card:last-child { border-bottom: none; padding-bottom: 0; }
+
+    .exp-meta { padding-top: 0.25rem; }
+
+    .exp-period {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.4rem;
+    }
+
+    .exp-location {
+      font-size: 0.8rem;
+      color: var(--warm-gray);
+    }
+
+    .exp-role {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 0.2rem;
+    }
+
+    .exp-company {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--terracotta-dark);
+      margin-bottom: 1rem;
+      letter-spacing: 0.05em;
+    }
+
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .exp-bullets li {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--warm-gray);
+      line-height: 1.65;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .exp-bullets li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--terracotta);
+      font-size: 0.8rem;
+    }
+
+    /* ---- SKILLS ---- */
+    #skills { background: var(--charcoal); }
+
+    #skills .section-title { color: var(--cream); }
+    #skills .section-num { color: var(--terracotta); }
+    #skills .section-line { background: #3a3530; }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-card {
+      padding: 2rem;
+      border: 1px solid #3a3530;
+      border-radius: 4px;
+      transition: border-color 0.3s, background 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s, transform 0.6s, border-color 0.3s;
+    }
+
+    .skill-card.visible { opacity: 1; transform: translateY(0); }
+    .skill-card:hover { border-color: var(--terracotta); background: rgba(196,115,90,0.06); }
+
+    .skill-card-icon {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .skill-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--cream);
+      margin-bottom: 0.8rem;
+    }
+
+    .skill-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      color: var(--warm-gray);
+      background: #3a3530;
+      border-radius: 3px;
+      padding: 0.25rem 0.6rem;
+      margin: 0.2rem 0.2rem 0 0;
+    }
+
+    /* ---- EDUCATION ---- */
+    #education { background: var(--cream); }
+
+    .edu-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .edu-main {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+
+    .edu-main.visible { opacity: 1; transform: translateY(0); }
+
+    .edu-school {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--charcoal);
+      margin-bottom: 0.3rem;
+    }
+
+    .edu-degree {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--terracotta);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .edu-detail {
+      font-size: 0.85rem;
+      color: var(--warm-gray);
+      margin-bottom: 0.3rem;
+    }
+
+    .gpa-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      padding: 0.5rem 1.2rem;
+      background: var(--terracotta);
+      color: white;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .edu-side {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s 0.15s, transform 0.6s 0.15s;
+    }
+
+    .edu-side.visible { opacity: 1; transform: translateY(0); }
+
+    .activity-list { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .activity-item {
+      padding: 1.2rem 1.5rem;
+      border-left: 3px solid var(--sand);
+      transition: border-color 0.3s;
+    }
+
+    .activity-item:hover { border-color: var(--terracotta); }
+
+    .activity-name {
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--charcoal);
+      margin-bottom: 0.2rem;
+    }
+
+    .activity-role {
+      font-size: 0.8rem;
+      color: var(--terracotta);
+      margin-bottom: 0.4rem;
+    }
+
+    .activity-desc {
+      font-size: 0.8rem;
+      color: var(--warm-gray);
+      line-height: 1.6;
+    }
+
+    /* ---- VOLUNTEER ---- */
+    #volunteer { background: var(--sand); }
+
+    .volunteer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .vol-card {
+      background: var(--cream);
+      border-radius: 6px;
+      padding: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s, transform 0.6s;
+    }
+
+    .vol-card.visible { opacity: 1; transform: translateY(0); }
+
+    .vol-tag {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.8rem;
+    }
+
+    .vol-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--charcoal);
+      margin-bottom: 0.4rem;
+    }
+
+    .vol-role {
+      font-size: 0.82rem;
+      color: var(--warm-gray);
+      margin-bottom: 0.8rem;
+    }
+
+    .vol-desc {
+      font-size: 0.85rem;
+      color: var(--warm-gray);
+      line-height: 1.65;
+    }
+
+    /* ---- FOOTER ---- */
+    footer {
+      background: var(--charcoal);
+      color: var(--warm-gray);
+      text-align: center;
+      padding: 3rem 4rem;
+    }
+
+    footer .footer-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+
+    footer p { font-size: 0.8rem; margin-top: 0.4rem; }
+
+    footer a {
+      color: var(--terracotta);
+      text-decoration: none;
+    }
+
+    /* ---- ANIMATIONS ---- */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 900px) {
+      nav { padding: 1.2rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+
+      #hero {
+        grid-template-columns: 1fr;
+        padding: 7rem 1.5rem 4rem;
+        gap: 3rem;
+      }
+
+      .hero-bg-shape { display: none; }
+      .hero-strengths { padding-left: 0; }
+
+      section { padding: 4rem 1.5rem; }
+
+      .exp-card { grid-template-columns: 1fr; gap: 0.5rem; }
+      .edu-block { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">Karrigan Gangwish</a>
+  <ul class="nav-links">
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#volunteer">Service</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-shape"></div>
+
+  <div class="hero-text">
+    <p class="hero-eyebrow">International Business · Accounting · Hospitality</p>
+    <h1 class="hero-name">Karrigan<br /><em>Gangwish</em></h1>
+    <p class="hero-tagline">
+      UNL student passionate about people, leadership, and building meaningful experiences—whether in the classroom, on the volleyball court, or in the community.
+    </p>
+    <div class="hero-contact">
+      <a class="contact-chip" href="mailto:kegangwish@gmail.com">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        kegangwish@gmail.com
+      </a>
+      <span class="contact-chip">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+        Omaha, NE
+      </span>
+      <span class="contact-chip">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+        (402) 369-9352
+      </span>
+    </div>
+  </div>
+
+  <div class="hero-strengths">
+    <p class="strengths-label">CliftonStrengths</p>
+    <div class="strength-item">Restorative</div>
+    <div class="strength-item">Adaptability</div>
+    <div class="strength-item">Includer</div>
+    <div class="strength-item">Competition</div>
+    <div class="strength-item">Futuristic</div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2 class="section-title">Experience</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="exp-grid">
+
+    <div class="exp-card">
+      <div class="exp-meta">
+        <p class="exp-period">Aug 2025 – Present</p>
+        <p class="exp-location">Lincoln, NE</p>
+      </div>
+      <div>
+        <h3 class="exp-role">Assistant Teacher</h3>
+        <p class="exp-company">Cooper YMCA</p>
+        <ul class="exp-bullets">
+          <li>Supervised and engaged groups of children using strong communication and classroom management skills to create a safe, structured, and positive environment</li>
+          <li>Planned and led creative activities such as arts & crafts, games, and learning exercises to support child development</li>
+          <li>Collaborated with staff and communicated with parents in regular meetings to ensure each child's needs were met</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-meta">
+        <p class="exp-period">Dec 2022 – Jan 2026</p>
+        <p class="exp-location">Gretna, NE</p>
+      </div>
+      <div>
+        <h3 class="exp-role">Shift Lead / Server / Busser</h3>
+        <p class="exp-company">Tropical Smoothie</p>
+        <ul class="exp-bullets">
+          <li>Led daily operations in a fast-paced environment by coordinating staff, managing orders, and maintaining efficiency during high-volume shifts</li>
+          <li>Delivered high-quality customer service through clear communication and problem-solving, improving customer satisfaction and repeat business</li>
+          <li>Trained and supported new employees on daily tasks, cleanliness, food safety standards, and inventory organization</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-card">
+      <div class="exp-meta">
+        <p class="exp-period">Oct 2024 – Apr 2025</p>
+        <p class="exp-location">Gretna, NE</p>
+      </div>
+      <div>
+        <h3 class="exp-role">Volleyball Coach</h3>
+        <p class="exp-company">G1 Volleyball</p>
+        <ul class="exp-bullets">
+          <li>Coached and mentored athletes using leadership and teamwork skills to improve performance, confidence, and game understanding</li>
+          <li>Organized and led structured practices focused on skill development, discipline, and team cohesion</li>
+          <li>Communicated effectively with players and parents to build a positive, supportive team environment</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2 class="section-title">Skills</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-card">
+      <div class="skill-card-icon">🗣️</div>
+      <h3 class="skill-card-title">Leadership & Communication</h3>
+      <span class="skill-tag">Team Coordination</span>
+      <span class="skill-tag">Parent Communication</span>
+      <span class="skill-tag">Mentoring</span>
+      <span class="skill-tag">Classroom Management</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🌐</div>
+      <h3 class="skill-card-title">International Business</h3>
+      <span class="skill-tag">Global Mindset</span>
+      <span class="skill-tag">Cross-Cultural Awareness</span>
+      <span class="skill-tag">Accounting Minor</span>
+      <span class="skill-tag">Hospitality Minor</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">💻</div>
+      <h3 class="skill-card-title">Technical</h3>
+      <span class="skill-tag">Microsoft Excel</span>
+      <span class="skill-tag">Microsoft PowerPoint</span>
+      <span class="skill-tag">Microsoft Word</span>
+      <span class="skill-tag">CPR Certified</span>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">⚡</div>
+      <h3 class="skill-card-title">Operational</h3>
+      <span class="skill-tag">Staff Training</span>
+      <span class="skill-tag">Inventory Management</span>
+      <span class="skill-tag">Food Safety</span>
+      <span class="skill-tag">High-Volume Operations</span>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2 class="section-title">Education</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="edu-block">
+    <div class="edu-main">
+      <h3 class="edu-school">University of Nebraska-Lincoln</h3>
+      <p class="edu-degree">Bachelor of Science in Business Administration</p>
+      <p class="edu-detail">Major: International Business</p>
+      <p class="edu-detail">Minors: Accounting &amp; Hospitality</p>
+      <p class="edu-detail">Expected Graduation: May 2029 · Lincoln, NE</p>
+      <div class="gpa-badge">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        GPA: 3.33 / 4.00
+      </div>
+    </div>
+
+    <div class="edu-side">
+      <p class="section-num" style="margin-bottom:1rem;">Activities &amp; Involvement</p>
+      <ul class="activity-list">
+        <li class="activity-item">
+          <p class="activity-name">Alpha Chi Omega</p>
+          <p class="activity-role">Member · Aug 2025 – Present</p>
+          <p class="activity-desc">Participates in philanthropy events, community service, and chapter planning, strengthening teamwork, organization, and leadership.</p>
+        </li>
+        <li class="activity-item">
+          <p class="activity-name">Special Olympics Volleyball</p>
+          <p class="activity-role">Volunteer · Nov 2023 – Present</p>
+          <p class="activity-desc">Assists athletes with skill development and gameplay through encouragement, patience, and hands-on support.</p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- VOLUNTEER -->
+<section id="volunteer">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2 class="section-title">Community Service</h2>
+    <div class="section-line"></div>
+  </div>
+
+  <div class="volunteer-grid">
+    <div class="vol-card">
+      <p class="vol-tag">Volunteer · Apr 2024 &amp; Apr 2025</p>
+      <h3 class="vol-name">Night to Shine</h3>
+      <p class="vol-role">Crew Member · Omaha, NE</p>
+      <p class="vol-desc">Supported kids with special needs by creating a welcoming and memorable experience—an unforgettable prom night where every guest felt celebrated.</p>
+    </div>
+    <div class="vol-card">
+      <p class="vol-tag">Volunteer · Nov 2023 – Present</p>
+      <h3 class="vol-name">Special Olympics Volleyball</h3>
+      <p class="vol-role">Athlete Support Volunteer · Gretna, NE</p>
+      <p class="vol-desc">Provides ongoing hands-on support to athletes, helping them grow their skills, confidence, and love of the game through patient and encouraging coaching.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Karrigan Gangwish</div>
+  <p>International Business · University of Nebraska-Lincoln · Class of 2029</p>
+  <p style="margin-top:0.8rem;"><a href="mailto:kegangwish@gmail.com">kegangwish@gmail.com</a> &nbsp;·&nbsp; (402) 369-9352</p>
+</footer>
+
+<script>
+  // Scroll-reveal for cards
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.exp-card, .skill-card, .edu-main, .edu-side, .vol-card').forEach(el => {
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
